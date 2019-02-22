@@ -1,5 +1,7 @@
 def calcular_precio_producto(coste_producto):
-    pass
+    precioProducto = coste_producto * 0.5 + coste_producto
+
+    print("Precio del producto = $", precioProducto)
 
 
 def calcular_precio_servicio(cantidad_horas):
