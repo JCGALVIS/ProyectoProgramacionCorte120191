@@ -1,0 +1,21 @@
+ProyectoProgramacion Corte 1
+
+Planteamiento del problema
+
+    José tiene diferentes negocios, algunos venden productos y otros ofrecen servicios.
+
+    José necesita que le ayuden a automatizar sus calculos y cobros con una aplicación en Python
+
+Requerimientos del usuario
+
+
+    Cuando vende un producto cobra una comisión del 50% sobre el costo.
+    Cuando vende un servicio cobra una tarifa por horas de $100.000.
+    Cuando trabaja horas extra, cobra la tarifa por horas mas el 25%.
+    Cuando vende por fuera de la ciudad cobra $115 por Km de envío como recargo.
+    Cuando vende como persona juridica debe añadir iva a sus ventas.
+    Requiere calcular su recaudo dado una serie de productos locales como persona natural.
+
+
+
+
