@@ -15,7 +15,7 @@ def calcular_precio_producto(coste_producto):
     """
     precioProducto = coste_producto * 0.5 + coste_producto
 
-    return(precioProducto)
+    return float(precioProducto)
     pass
 
 def calcular_precio_servicio(cantidad_horas):
@@ -30,26 +30,23 @@ def calcular_precio_servicio(cantidad_horas):
     >>> calcular_precio_servicio(5)
     500000.0
     """
-    total = cantidad_horas*100000
+    total=cantidad_horas*100000
     return float(total)
     pass
 
-def calcular_precio_servicio_extras(cantidad_horas_extra):
+def calcular_precio_servicio_extras(cantidad_horas_extra, cantidad_horas):
 
     """
     num -> float
     opera dos numeros y suma lo que tiene la funcion anterior
     :param cantidad_horas: Entero con las horas extras trabajadas
     :return: EL precio del servicio con las horas extras
-    >>> calcular_precio_servicio_extras(1)
+    >>> calcular_precio_servicio_extras(1,4)
     525000.0
-    >>> calcular_precio_servicio_extras(2)
-    650000.0
-
-   ' thoras_extra = (cantidad_horas * 100000) * 0.25 + (cantidad_horas * 100000) + calcular_precio_servicio(cantidad_horas)'
-
+    >>> calcular_precio_servicio_extras(2,1)
+    350000.0
     """
-    thoras_extra = ((cantidad_horas_extra * 100000) * 0.25) + (cantidad_horas_extra * 100000) + calcular_precio_servicio(4)
+    thoras_extra = ((cantidad_horas_extra * 100000) * 0.25) + (cantidad_horas_extra * 100000) + calcular_precio_servicio(cantidad_horas)
 
     return float(thoras_extra)
     pass
@@ -81,13 +78,12 @@ def calcular_precio_producto_fuera(coste_producto,kilometros):
     :return: El precio del producto fuera de la ciudad
     >>> calcular_precio_producto_fuera(1000,1)
     1615.0
-
     >>> calcular_precio_producto_fuera(2000,1)
     3115.0
     """
-    tprecio_producto_envio=calcular_precio_producto(1000) + calcular_costo_envio(1)
+    tprecio_producto_envio=calcular_precio_producto(coste_producto) + calcular_costo_envio(kilometros)
 
-    return(tprecio_producto_envio)
+    return float(tprecio_producto_envio)
 
     pass
 
@@ -106,10 +102,11 @@ def calcular_iva_producto(coste_producto, tasa):
     0
     """
     iva_final=coste_producto*tasa
-    return (iva_final)
+    return float(iva_final)
+    pass
 
 def calcular_iva_servicio(cantidad_horas, tasa):
-    pass
+
     """
     num -> num
     num -> num
@@ -120,8 +117,9 @@ def calcular_iva_servicio(cantidad_horas, tasa):
     >>> calcular_iva_servicio(4,0.19)
     76000.0
     """
-    iva_servicio = (calcular_precio_servicio(4))*tasa
-    return (iva_servicio)
+    iva_servicio = calcular_precio_servicio(cantidad_horas)*calcular_iva_producto(tasa)
+    return float(iva_servicio)
+    pass
 
 def calcular_iva_envio(kilometros, tasa):
     pass
@@ -138,7 +136,8 @@ def calcular_iva_envio(kilometros, tasa):
     0.0
     """
     iva_envio = (kilometros*115)*tasa
-    return (iva_envio)
+    return float(iva_envio)
+    pass
 
 def calcular_iva_servicio_fuera(cantidad_horas, tasa):
     pass
@@ -156,6 +155,7 @@ def calcular_iva_servicio_fuera(cantidad_horas, tasa):
     """
     iva_servicio_fuera = ((cantidad_horas*100000)*0.25+(cantidad_horas*100000))*tasa
     return iva_servicio_fuera
+    pass
 
 def calcular_recaudo_locales(coste_producto_1,coste_producto_2,coste_producto_3):
     """
@@ -174,6 +174,7 @@ def calcular_recaudo_locales(coste_producto_1,coste_producto_2,coste_producto_3)
     """
     recaudo_local = coste_producto_1+coste_producto_2+coste_producto_3
     return float(recaudo_local)
+    pass
 
 def calcular_recaudo_horas_extra(horas_1,horas_2,horas_3,horas_4):
     """
@@ -194,6 +195,7 @@ def calcular_recaudo_horas_extra(horas_1,horas_2,horas_3,horas_4):
     """
     recaudo_extras = ((horas_1*100000)*0.25+(horas_1*100000))+((horas_2*100000)*0.25+(horas_2*100000))+((horas_3*100000)*0.25+(horas_3*100000))+((horas_4*100000)*0.25+(horas_4*100000))
     return recaudo_extras
+    pass
 
 
 def calcular_recaudo_mixto_local(coste_producto_1,coste_producto_2,horas_1,horas_2):
@@ -215,24 +217,4 @@ def calcular_recaudo_mixto_local(coste_producto_1,coste_producto_2,horas_1,horas
     """
     recaudo_mix = (coste_producto_1+(coste_producto_1*0.5))+(coste_producto_2+(coste_producto_2*0.5))+((horas_1*100000)*0.25+(horas_1*100000))+((horas_2*100000)*0.25+(horas_2*100000))
     return recaudo_mix
-
-
-
-
-def calcular_recaudo_locales(coste_producto_1,
-                             coste_producto_2,
-                             coste_producto_3):
-    pass
-
-def calcular_recaudo_horas_extra(horas_1,
-                                 horas_2,
-                                 horas_3,
-                                 horas_4):
-    pass
-
-
-def calcular_recaudo_mixto_local(coste_producto_1,
-                                 coste_producto_2,
-                                 horas_1,
-                                 horas_2):
     pass
