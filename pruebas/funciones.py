@@ -1,4 +1,5 @@
 def calcular_precio_producto(coste_producto):
+
     """
     num -> num
     print("Precio del producto = $", precioProducto)
@@ -84,7 +85,6 @@ def calcular_precio_producto_fuera(coste_producto,kilometros):
     tprecio_producto_envio=calcular_precio_producto(coste_producto) + calcular_costo_envio(kilometros)
 
     return float(tprecio_producto_envio)
-
     pass
 
 def calcular_iva_producto(coste_producto, tasa):
@@ -105,7 +105,7 @@ def calcular_iva_producto(coste_producto, tasa):
     return float(iva_final)
     pass
 
-def calcular_iva_servicio(cantidad_horas, tasa):
+def calcular_iva_servicio(cantidad_horas, tasa_iva):
 
     """
     num -> num
@@ -114,15 +114,17 @@ def calcular_iva_servicio(cantidad_horas, tasa):
     :param cantidad_horas: Numero de la cantidad de horas trabajadas
     :param tasa: Porcentaje para operar
     :return: el valor del iva del servicio
-    >>> calcular_iva_servicio(4,0.19)
+    >>> calcular_iva_servicio(4, 0.19)
     76000.0
+    >>> calcular_iva_servicio(2, 0.16)
+    32000.0
     """
-    iva_servicio = calcular_precio_servicio(cantidad_horas)*calcular_iva_producto(tasa)
+    iva_servicio = calcular_precio_servicio(cantidad_horas)*tasa_iva
     return float(iva_servicio)
     pass
 
-def calcular_iva_envio(kilometros, tasa):
-    pass
+def calcular_iva_envio(kilometros, tasa_iva):
+
     """
     num -> num
     num -> num
@@ -130,17 +132,17 @@ def calcular_iva_envio(kilometros, tasa):
     :param kilometros: Cantidad de kilometros recorridos
     :param tasa: la tasa para multiplicar los kilometros
     :return: el iva del envio
-    >>> calcular_iva_envio(1,0.19)
+    >>> calcular_iva_envio(1, 0.19)
     21.85
-    >>> calcular_iva_envio(0,0.19)
+    >>> calcular_iva_envio(0, 0.19)
     0.0
     """
-    iva_envio = (kilometros*115)*tasa
+    iva_envio = calcular_costo_envio(kilometros) * tasa_iva
     return float(iva_envio)
     pass
 
-def calcular_iva_servicio_fuera(cantidad_horas, tasa):
-    pass
+def calcular_iva_servicio_fuera(cantidad_horas, tasa_iva):
+
     """
     num -> num
     num -> num
@@ -153,11 +155,12 @@ def calcular_iva_servicio_fuera(cantidad_horas, tasa):
     >>> calcular_iva_servicio_fuera(0,0.19)
     0.0
     """
-    iva_servicio_fuera = ((cantidad_horas*100000)*0.25+(cantidad_horas*100000))*tasa
+    iva_servicio_fuera = ((calcular_precio_servicio(cantidad_horas) * 0.25) + calcular_precio_servicio(cantidad_horas)) * tasa_iva
     return iva_servicio_fuera
     pass
 
 def calcular_recaudo_locales(coste_producto_1,coste_producto_2,coste_producto_3):
+
     """
     num -> num
     num -> num
@@ -172,11 +175,13 @@ def calcular_recaudo_locales(coste_producto_1,coste_producto_2,coste_producto_3)
     >>> calcular_recaudo_locales(0,1500,0)
     1500.0
     """
-    recaudo_local = coste_producto_1+coste_producto_2+coste_producto_3
+    recaudo_local = coste_producto_1 + coste_producto_2 + coste_producto_3
+
     return float(recaudo_local)
     pass
 
 def calcular_recaudo_horas_extra(horas_1,horas_2,horas_3,horas_4):
+
     """
     num -> num
     num -> num
@@ -196,7 +201,6 @@ def calcular_recaudo_horas_extra(horas_1,horas_2,horas_3,horas_4):
     recaudo_extras = ((horas_1*100000)*0.25+(horas_1*100000))+((horas_2*100000)*0.25+(horas_2*100000))+((horas_3*100000)*0.25+(horas_3*100000))+((horas_4*100000)*0.25+(horas_4*100000))
     return recaudo_extras
     pass
-
 
 def calcular_recaudo_mixto_local(coste_producto_1,coste_producto_2,horas_1,horas_2):
     """
