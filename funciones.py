@@ -13,12 +13,16 @@ def calcular_precio_producto(coste_producto):
     3000.0
 
     """
+    if(coste_producto <= 0):
+        return 'El costo del producto debe ser mayor a cero.'
 
-    return(coste_producto*0.5+coste_producto)
+    precioProducto = (coste_producto * 0.5) + coste_producto
+
+    return precioProducto
 
 def calcular_precio_servicio(cantidad_horas):
     """
-    num -> num
+    num -> float
 
     opera dos numeros para dar como resultado el precio del servicio
 
@@ -31,7 +35,11 @@ def calcular_precio_servicio(cantidad_horas):
     500000.0
 
     """
-    total=cantidad_horas*100000
+
+    if (cantidad_horas <= 0):
+        return 'Las horas deben ser mayor a cero.'
+
+    total = cantidad_horas * 100000
     return float(total)
 
 def calcular_precio_servicio_extras(cantidad_horas):
@@ -44,12 +52,22 @@ def calcular_precio_servicio_extras(cantidad_horas):
     :return: EL precio del servicio con las horas extras
 
     >>> calcular_precio_servicio_extras(1)
-    525000.0
+    125000.0
     >>> calcular_precio_servicio_extras(2)
-    650000.0
+    250000.0
 
     """
-    return((cantidad_horas*100000)*0.25+(cantidad_horas*100000)+calcular_precio_servicio(4))
+
+    if (cantidad_horas == 0):
+        return 'El servicio no genera horas extras.'
+
+    if (cantidad_horas < 0):
+        return 'Las horas deben ser mayor a cero.'
+
+    precioServicio = calcular_precio_servicio(cantidad_horas)
+    precioServicioExtras = (precioServicio * 0.25) + precioServicio
+
+    return precioServicioExtras
 
 
 def calcular_costo_envio(kilometros):
@@ -66,6 +84,10 @@ def calcular_costo_envio(kilometros):
     0.0
 
     """
+
+    if (kilometros < 0):
+        return 'El numero de kilometros debe ser mayor a cero.'
+
     return(float(kilometros * 115))
 
 def calcular_precio_producto_fuera(coste_producto,kilometros):
@@ -78,8 +100,15 @@ def calcular_precio_producto_fuera(coste_producto,kilometros):
     >>> calcular_precio_producto_fuera(1000,1)
     1615.0
 
+    >>> calcular_precio_producto_fuera(500,5)
+    1325.0
+
     """
-    return(calcular_precio_producto(1000) + calcular_costo_envio(1))
+
+    if (coste_producto <= 0):
+        return 'El costo del producto debe ser mayor a cero.'
+
+    return(calcular_precio_producto(coste_producto) + calcular_costo_envio(kilometros))
 
 def calcular_iva_producto(coste_producto, tasa):
     """
@@ -94,12 +123,16 @@ def calcular_iva_producto(coste_producto, tasa):
     :return: El valor del iva
 
     >>> calcular_iva_producto(1000,0.19)
-    190.0
+    285.0
     >>> calcular_iva_producto(1000,0)
-    0
+    0.0
 
     """
-    iva_final=coste_producto*tasa
+
+    if (coste_producto <= 0):
+        return 'El costo del producto debe ser mayor a cero.'
+
+    iva_final = calcular_precio_producto(coste_producto) * tasa
     return (iva_final)
 
 def calcular_iva_servicio(cantidad_horas, tasa):
@@ -113,12 +146,14 @@ def calcular_iva_servicio(cantidad_horas, tasa):
     :param tasa: Porcentaje para operar
     :return: el valor del iva del servicio
 
-    >>> calcular_iva_servicio(4,0.19)
+    >>> calcular_iva_servicio(4, 0.19)
     76000.0
-
-
     """
-    iva_servicio = (calcular_precio_servicio(4))*tasa
+
+    if (cantidad_horas <= 0):
+        return 'El numero de horas debe ser mayor a cero.'
+
+    iva_servicio = (calcular_precio_servicio(cantidad_horas)) * tasa
     return (iva_servicio)
 
 def calcular_iva_envio(kilometros, tasa):
@@ -135,11 +170,14 @@ def calcular_iva_envio(kilometros, tasa):
 
     >>> calcular_iva_envio(1,0.19)
     21.85
-    >>> calcular_iva_envio(0,0.19)
-    0.0
+    >>> calcular_iva_envio(2,0.19)
+    43.7
 
     """
-    iva_envio = (kilometros*115)*tasa
+    if(kilometros < 0):
+        return 'El numero de kilometros no debe ser menor a cero.'
+
+    iva_envio = calcular_costo_envio(kilometros) * tasa
     return (iva_envio)
 
 def calcular_iva_servicio_fuera(cantidad_horas, tasa):
