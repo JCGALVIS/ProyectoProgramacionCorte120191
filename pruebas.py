@@ -29,12 +29,12 @@ class pruebas(unittest.TestCase):
         self.assertEqual(f.calcular_costo_envio(-2), 'El numero de kilometros debe ser mayor a cero.')
         pass
 
-    def test_calcular_precio_producto_fuera(self):
-        self.assertEqual(f.calcular_precio_producto_fuera(600, 20), 3200)
-        self.assertEqual(f.calcular_precio_producto_fuera(2000, 50), 8750)
-        self.assertEqual(f.calcular_precio_producto_fuera(1100, 0), 1650)
-        self.assertEqual(f.calcular_precio_producto_fuera(1100, 0), 1650)
-        self.assertEqual(f.calcular_precio_producto_fuera(0, 10), 'El costo del producto debe ser mayor a cero.')
+    def test_calcular_precio_producto_extra(self):
+        self.assertEqual(f.calcular_precio_producto_extra(600, 20), 3200)
+        self.assertEqual(f.calcular_precio_producto_extra(2000, 50), 8750)
+        self.assertEqual(f.calcular_precio_producto_extra(1100, 0), 1650)
+        self.assertEqual(f.calcular_precio_producto_extra(1100, 0), 1650)
+        self.assertEqual(f.calcular_precio_producto_extra(0, 10), 'El costo del producto debe ser mayor a cero.')
         pass
 
     def test_calcular_iva_producto(self):
